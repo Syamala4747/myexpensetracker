@@ -19,8 +19,13 @@ exports.registerUser = async (req, res) => {
         if(existingUser){
             return res.status(400).json({message : "Email already in use"});
         }
-        const user = await User.create({
-            fullName,email,password,profileImageUrl});
+       const user = await User.create({
+  fullName,
+  email,
+  password,
+  profileImageUrl: `${process.env.BASE_URL}/uploads/${req.file?.filename || 'default.jpg'}`
+});
+
          
             res.status(201).json({
                 id:user._id,
