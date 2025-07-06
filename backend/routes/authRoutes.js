@@ -11,7 +11,7 @@ const upload = require("../middleware/uploadMiddleware"); // ✅ Import your mul
 
 const router = express.Router();
 
-router.post("/signUp", registerUser);
+router.post("/signUp", upload.single("profileImage"), registerUser);
 router.post("/login", loginUser);
 router.get("/getUser", protect, getUserInfo);
 router.post("/upload-image", upload.single("image"),(req,res)=>{
